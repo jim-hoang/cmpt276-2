@@ -1,0 +1,22 @@
+body {
+    background-color:  	azure;
+}
+
+.title {
+    color: white;
+    background-color:	#7d12ff;
+    padding: 1rem;
+}
+
+.title-font {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.summary {
+    margin-top: 5rem;
+}
+ 
+.table-header-fixed-width {
+    width: 20%;
+}
