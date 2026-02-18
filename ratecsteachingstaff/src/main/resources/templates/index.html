@@ -8,6 +8,7 @@
     <title>CS Teaching Staff Ratings</title>
 </head>
 <body>
+    <!--page title-->
     <header>
         <div class="container-fluid title">
             <h1 class="title-font">CS Teaching Staff Ratings</h1>
@@ -16,8 +17,14 @@
 
     <main>
         <div class="container summary">
-            <div class="row mt-5"> 
+            <header>
+                <h2 class="sub-header">View Ratings</h2>
+                <p>Click on the name of a rating to view full details in addition to edit or deletion of rating</p>
+            </header>
+            <div class="row mt-3"> 
                 <div class="col-sm-12 col-md-12 col-lg-12">
+                    
+                    <!--summary of ratings table-->
                     <table class="table table-bordered">
                         <tr>
                             <th class="table-header-fixed-width">Name</th>
@@ -25,9 +32,18 @@
                             <th class="table-header-fixed-width">Occuptation</th>
                             <th class="table-header-fixed-width">Overall Score</th>
                         </tr>
+                        <tr th:each="rating : ${ratings}">
+                            <td><a th:href="@{/ratings/{id}(id=${rating.id})}" th:text="${rating.name}" class="no-underline">name</a></td>
+                            <td th:text="${rating.email}">email</td>
+                            <td th:text="${rating.roleType}">occuptation</td>
+                            <td th:text="${#numbers.formatDecimal((rating.knowledgeableScore + rating.niceness + rating.clarity)/3.0, 1, 1)}">score</td>
+                        </tr>
                     </table>
                 </div>
             </div>
+
+            <!--Add rating button-->
+            <a class="btn btn-primary" th:href="@{/ratings/add}"><strong>+</strong> Add Rating</a>
         </div>
     </main>
 </body>

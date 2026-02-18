@@ -3,9 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Add Rating</title>
 </head>
 <body>
-    
+    <header>
+        <div class="container-fluid title">
+            <h1 class="title-font">CS Teaching Staff Ratings</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container add-container">
+            <header>
+                <h2 class="sub-header text-center mb-3">Add New Rating</h2>
+            </header>
+            <div class="row">
+                <div class="col-sm-12 col-md-8 col-lg-6 mx-auto">
+                    <form th:action="@{/ratings/{id}/edit(id=${rating.id})}" method="post">
+                        <input type="hidden" name="id" th:value="${rating.id}">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" th:value="${rating.name}" required>
+                            <small class="error-text" th:if="${nameError}" th:text="${nameError}"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" th:value="${rating.email}" required>
+                            <small class="error-text" th:if="${emailError}" th:text="${emailError}"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Role</label>
+                            <select class="form-select" id="role" name="role" th:selected="${rating.roleType}"required>
+                                <option value="PROFESSOR">Professor</option>
+                                <option value="INSTRUCTOR">Instructor</option>
+                                <option value="TA">TA</option>
+                                <option value="STAFF">Staff</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="clarity" class="form-label">Clarity (1-10)</label>
+                            <input type="number" class="form-control" id="clarity" name="clarity" th:value="${rating.clarity}" required>
+                            <small class="error-text" th:if="${clarityError}" th:text="${clarityError}"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="niceness" class="form-label">Niceness (1-10)</label>
+                            <input type="number" class="form-control" id="niceness" name="niceness" th:value="${rating.niceness}" required>
+                            <small class="error-text" th:if="${nicenessError}" th:text="${nicenessError}"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="knowledgeableScore" class="form-label">Knowledgeable (1-10)</label>
+                            <input type="number" class="form-control" id="knowledgeableScore" name="knowledgeableScore" th:value="${rating.knowledgeableScore}" required>
+                            <small class="error-text" th:if="${knowledgeableError}" th:text="${knowledgeableError}"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comment</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="3" th:text="${rating.comment}"></textarea>
+                            <small class="error-text" th:if="${commentError}" th:text="${commentError}"></small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Changes</button>
+                        <a class="btn btn-secondary" th:href="@{/}">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

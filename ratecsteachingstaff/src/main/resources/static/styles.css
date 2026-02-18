@@ -1,5 +1,6 @@
 body {
     background-color:  	azure;
+    padding-bottom: 3rem;
 }
 
 .title {
@@ -14,9 +15,66 @@ body {
 }
 
 .summary {
+    margin-top: 4rem;
+}
+
+.add-container {
     margin-top: 5rem;
 }
- 
+.sub-header {
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 0;
+}
+
 .table-header-fixed-width {
     width: 20%;
+}
+
+.no-underline {
+    text-decoration: none;
+    color: inherit;
+}
+
+.no-underline:hover {
+    text-decoration: underline;
+}
+
+.detail-container {
+    margin-top: 5rem;
+}
+
+.detail-box {
+    border: black solid 1px;
+    border-radius: 5px;
+}
+
+.card {
+    padding: 0.5rem;
+}
+
+#delete-button {
+    background-color: red;
+    border-color: #dc3545;
+}
+
+#delete-button:hover {
+    background-color: #bb2d3b;
+    border-color: #bb2d3b;
+}
+
+.warn-container {
+    margin-top: 4rem;
+}
+
+.warning {
+    background-color: white;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.error-text {
+    color: red;
 }
