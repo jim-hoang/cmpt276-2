@@ -71,6 +71,8 @@ public class StaffRatingController {
     public String deleteRating(@RequestParam int id) {
         return staffRatingService.deleteRating(id);
     }
+
+                 
     
     
 }

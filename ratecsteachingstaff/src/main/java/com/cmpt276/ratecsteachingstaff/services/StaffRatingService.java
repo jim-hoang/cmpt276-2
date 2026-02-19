@@ -63,7 +63,7 @@ public class StaffRatingService {
         staffRatingRepository.save(rating);
         return "redirect:/";
     }
-
+    
     public String getDeletePage(Model model, int id) {
         StaffRating rating = staffRatingRepository.findById(id).orElse(null);
         model.addAttribute("rating", rating);
@@ -80,7 +80,7 @@ public class StaffRatingService {
         boolean valid = true;
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
                             "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        Pattern p = Pattern.compile(emailRegex);
+        Pattern emailPattern = Pattern.compile(emailRegex);
 
         if (name.trim().length() < 2 || name.trim().length() > 60) {
             model.addAttribute("nameError", "* Name must be between 2 and 60 characters");
@@ -90,8 +90,11 @@ public class StaffRatingService {
             valid = false;
         }
         
-        if(!p.matcher(email).matches()) {
+        if(!emailPattern.matcher(email).matches()) {
             model.addAttribute("emailError", "* Email must be in a valid format");
+            valid = false;
+        } else if(email.isBlank()) {
+            model.addAttribute("emailError", "* Email cannot be blank");
             valid = false;
         }
 
@@ -108,7 +111,7 @@ public class StaffRatingService {
         if (knowledgeableScore < 1 || knowledgeableScore > 10) {
             model.addAttribute("knowledgeableError", "* Knowledgeable Score must be between 1 and 10");
             valid = false;
-        }
+        } 
 
         if (comment.trim().length() > 255) {
             model.addAttribute("commentError", "* Comment must be under or equal to 255 characters");
